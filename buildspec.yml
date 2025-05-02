@@ -6,7 +6,7 @@ phases:
       - echo Installing dependencies...
   build:
     commands:
-      - echo Building (no real build needed)
+      - echo "Building (no real build needed)"
 # artifacts:
 #   files:
 #     - '**/*'
