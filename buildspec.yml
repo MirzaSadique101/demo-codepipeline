@@ -7,6 +7,6 @@ phases:
   build:
     commands:
       - echo Building (no real build needed)
-artifacts:
-  files:
-    - '**/*'
+# artifacts:
+#   files:
+#     - '**/*'
