@@ -1,5 +1,8 @@
-# Use official base image
-FROM node:18-alpine
+# # Use official base image
+# FROM node:18-alpine
+
+# Use Amazon ECR public Node image instead of Docker Hub
+FROM public.ecr.aws/docker/library/node:18-alpine
 
 # Set working directory
 WORKDIR /app
