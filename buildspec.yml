@@ -1,12 +1,30 @@
-version: 0.2 
+version: 0.2
+
+env:
+  variables:
+    IMAGE_TAG: latest
+    AWS_DEFAULT_REGION: us-east-1 # change to your region
+    ECR_REPO_NAME: sample-ecr    # change to your actual ECR repo name
 
 phases:
-  install:
+  pre_build:
     commands:
-      - echo Installing dependencies...
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 074787506974.dkr.ecr.us-east-1.amazonaws.com
+      # - REPOSITORY_URI=<your_account_id>.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$ECR_REPO_NAME
+      # - echo Repository URI: $REPOSITORY_URI
+
   build:
     commands:
-      - echo "Building (no real build needed)"
-# artifacts:
-#   files:
-#     - '**/*'
+      - echo Building Docker image...
+      - docker build -t namespace/sample-ecr .
+      - docker tag namespace/sample-ecr:latest 074787506974.dkr.ecr.us-east-1.amazonaws.com/namespace/sample-ecr:latest
+
+  post_build:
+    commands:
+      - echo Pushing Docker image to ECR...
+      - docker push 074787506974.dkr.ecr.us-east-1.amazonaws.com/namespace/sample-ecr:latest
+artifacts:
+  files:
+    - '**/*'
