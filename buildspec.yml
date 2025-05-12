@@ -1,10 +1,10 @@
 version: 0.2
 
-env:
-  variables:
-    IMAGE_TAG: latest
-    AWS_DEFAULT_REGION: us-east-1 # change to your region
-    ECR_REPO_NAME: sample-ecr    # change to your actual ECR repo name
+# env:
+#   variables:
+#     IMAGE_TAG: latest
+#     AWS_DEFAULT_REGION: us-east-1 # change to your region
+#     ECR_REPO_NAME: sample-ecr    # change to your actual ECR repo name
 
 phases:
   pre_build:
